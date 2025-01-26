@@ -1,0 +1,41 @@
+﻿@model Library_Managment_System.Models.Entities.Event
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<img src="http://images.booking-wp-plugin.com/main/blog/libraries-booking.jpg"
+     style="width: 1100px;
+           height: 200px;
+           object-fit: cover;
+           border-radius: 20px;" />
+<h3>Details</h3>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Place)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Place)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to Events</a>
+</div>

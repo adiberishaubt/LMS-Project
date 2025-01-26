@@ -1,0 +1,118 @@
+﻿@model BaseViewModel<BookViewModel>
+@{ 
+    string title = (string)ViewData["title"];
+    string author = (string)ViewData["author"];
+    int itemsPerPage = (int)ViewData["itemsPerPage"];
+}
+<div class="container">
+    <h2>Books</h2>
+
+    <div class="alert-warning" asp-validation-summary="All"></div>
+
+    <div>
+        @if (User.IsInRole(Roles.Admin.ToString()))
+        {
+            <a class="btn btn-success" asp-action="Create">Add Book</a>
+        }
+    </div>
+
+    <div class="filter-container">
+        <form asp-action="Index" method="get">
+            <div class="form-div">
+                <label for="title">Find by title: </label>
+                <input type="text" name="title" id="title" placeholder="Title" value="@title" />
+            </div>
+            <div class="form-div">
+                <label for="author">Find by author: </label>
+                <input type="text" name="author" id="author" placeholder="Author name" value="@author" />
+            </div>
+            <div class="form-div">
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+            </div>
+            <div class="form-div">
+                <a asp-action="Index" class="btn btn-outline-dark back-btn">Back to list</a>
+            </div>
+        </form>
+
+        <div class="order-container" >
+            <div class="dropdown">
+                <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
+                    Order By
+                </button>
+                <div class="dropdown-menu">
+                    @{
+                        string[] list = { "Title", "Author", "PublishedDate" };
+                        foreach (var item in list)
+                        {
+                            bool desc = (!Model.Is_Desc && @Model.Orderby == item);
+                            string cssClass = desc ? "bi bi-sort-up" : "bi bi-sort-down";
+                            <a class="dropdown-item"
+                                asp-action="Index"
+                                asp-route-title="@title"
+                                asp-route-author="@author"
+                                asp-route-orderBy="@item"
+                                asp-route-itemsPerPage="@itemsPerPage"
+                                asp-route-desc="@desc">
+                                @item
+                                <i class="@cssClass"></i>
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="dropdown">
+                <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
+                    Books per page
+                </button>
+                <div class="dropdown-menu">
+                    @{
+                        int[] noList = { 5, 10 ,15, 20, 50 };
+                        foreach (var item in noList)
+                        {
+                            <a class="dropdown-item"
+                               asp-action="Index"
+                               asp-route-title="@title"
+                               asp-route-author="@author"
+                               asp-route-itemsPerPage="@item">
+                                @item
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="book-container">
+        @foreach (var book in Model.Items)
+        {
+            <div class="book-cart">
+                <div class="book-image">
+                    <input type="hidden" value="@book.Id" />
+                    <img src="@Url.Action("Image","Book",new { id = book.Image})" asp-append-version="true" width="200" />
+                </div>
+                <div class="book-text">
+                    <h2>@book.Title</h2>
+                    <p>Author: @book.Author</p>
+                    <i>Published by: @book.PublisherName</i>
+                    <p>@book.PublishedDate</p>
+                    @{ 
+                        string link = String.Format("http://{0}", book.Link);
+                        <a href="@link" target="_blank">Download <i class="bi bi-box-arrow-up-right"></i></a>
+                    }
+                </div>
+                <div class="book-buttons">
+                    <a class="btn btn-outline-info" asp-action="Details" asp-route-bookId="@book.Id" >Details</a>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="btn-group">
+        @for (int i = 0; i < Model.NoOfPages; i++)
+        {
+            string cls = Model.CurrentPage == i ? "btn btn-primary" : "btn btn-outline-primary";
+            <a class="@cls" asp-action="Index"  asp-route-currentPage="@i" asp-route-itemsPerPage="@itemsPerPage">@(i + 1)</a>
+        }
+    </div>
+</div>

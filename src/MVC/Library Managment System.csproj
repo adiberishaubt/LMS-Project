@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <UserSecretsId>aspnet-Library_Managment_System-0CC7A239-3BD1-4803-A89F-387B28FCE200</UserSecretsId>
+    <RootNamespace>Library_Managment_System</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20220104211814_ImageTable.cs" />
+    <Compile Remove="Data\Migrations\20220104211814_ImageTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220104212740_ImageTable.cs" />
+    <Compile Remove="Data\Migrations\20220104212740_ImageTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220105130630_Test.cs" />
+    <Compile Remove="Data\Migrations\20220105130630_Test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220105130818_test.cs" />
+    <Compile Remove="Data\Migrations\20220105130818_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220105131028_test.cs" />
+    <Compile Remove="Data\Migrations\20220105131028_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220105131219_test.cs" />
+    <Compile Remove="Data\Migrations\20220105131219_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220105131322_test.cs" />
+    <Compile Remove="Data\Migrations\20220105131322_test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220105131719_test.cs" />
+    <Compile Remove="Data\Migrations\20220105131719_test.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

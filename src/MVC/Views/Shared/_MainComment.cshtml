@@ -1,0 +1,18 @@
+﻿@model CreateReview
+
+<div>
+    <form asp-action="AddComment" asp-controller="Book" method="post">
+        <input type="hidden" asp-for="ReviewerId" />
+        <input type="hidden" asp-for="BookId" />
+
+        <div class="form-outline">
+            <label class="form-label" asp-for="Comment"></label>
+            <textarea asp-for="Comment" class="form-control"></textarea>
+            <span asp-validation-for="Comment" class="text-danger"></span>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-success mt-3">Comment</button>
+        </div>
+    </form>
+</div>

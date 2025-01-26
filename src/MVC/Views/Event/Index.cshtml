@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Library_Managment_System.Models.Entities.Event>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<img src="http://images.booking-wp-plugin.com/main/blog/libraries-booking.jpg"
+     style="width: 1100px;
+           height: 200px;
+           object-fit: cover;
+           border-radius: 20px;" />
+<h1></h1>
+<h3>Events</h3>
+
+<p>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" class="btn btn-primary">Create Event</a>
+
+    }
+
+</p>
+
+
+@foreach (var item in Model)
+{
+    <div class="card mb-3" style="max-width: 1100px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="https://www.albanypubliclibrary.org/wp-content/themes/BASE2/library/images/library-events_optimized.png" style="width:200px; height:200px; object-fit:cover" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Time)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Place)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Time)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Place)
+                                </td>
+                                <td>
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+
+                                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                                    }
+                                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info">Details</a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}

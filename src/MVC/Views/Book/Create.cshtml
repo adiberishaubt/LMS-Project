@@ -1,0 +1,43 @@
+﻿@model CreateBook
+
+<div class="container">
+    <h2>Add Book</h2>
+
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-outline">
+            <label class="form-label" asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-outline">
+            <label class="form-label" asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-outline">
+            <label class="form-label" asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+
+        <div class="form-outline">
+            <label class="form-label" asp-for="Link"></label>
+            <input asp-for="Link" class="form-control" />
+            <span asp-validation-for="Link" class="text-danger"></span>
+        </div>
+
+        <div class="form-outline">
+            <label class="form-label" for="customFile">Upload Image</label>
+            <input class="form-control" id="customFile" asp-for="Image" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form>
+</div>
